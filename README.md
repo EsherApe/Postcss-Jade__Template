@@ -1,1 +1,1 @@
-# Pangaea landing-page for CRM
+# Template for fast project deployment with Pug(Jade), PostCss and Gulp.
