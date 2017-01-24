@@ -23,8 +23,8 @@ var gulp = require('gulp'),
     responsiveImages = require('postcss-responsive-images'),
     short = require ('postcss-short'),
     size = require('postcss-size'),
-    //HTML
-    jade = require('gulp-jade'),
+    //HTML (Pug ex Jade)
+    pug = require('gulp-pug'),
     //JS
     uglify = require('gulp-uglify'),
     //Other
@@ -55,7 +55,7 @@ var path = {
         fonts: 'src/fonts/**/*.*'
     },
     watch: {
-        jade: 'src/jade/*.jade',
+        pug: 'src/pug/*.pug',
         html: 'src/**/*.html',
         php: 'src/**/*.php',
         js: 'src/js/**/*.js',
@@ -79,9 +79,9 @@ gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
 
-gulp.task('jade:build', function() {
-    gulp.src('src/jade/*.jade')
-        .pipe(jade({
+gulp.task('pug:build', function() {
+    gulp.src('src/pug/*.pug')
+        .pipe(pug({
             pretty: true
         }))
         .pipe(gulp.dest('src/'))
@@ -180,7 +180,7 @@ gulp.task('concatPlug:js', function () {
 });
 
 gulp.task('build', [
-    'jade:build',
+    'pug:build',
     'html:build',
     'php:build',
     'js:build',
@@ -192,8 +192,8 @@ gulp.task('build', [
 ]);
 
 gulp.task('watch', function () {
-    watch('src/jade/*.jade', function(event, cb) {
-        gulp.start('jade:build');
+    watch('src/pug/*.pug', function(event, cb) {
+        gulp.start('pug:build');
     });
     watch([path.watch.html], function (event, cb) {
         gulp.start('html:build');
